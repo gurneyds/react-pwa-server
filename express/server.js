@@ -13,25 +13,25 @@ app.use(cors())
 
 const router = express.Router()
 
-router.get('/ping', function (req, res) {
+app.get('/ping', function (req, res) {
   return res.send('pong');
 });
 
-router.get('/api/countries', function (req, res) {
+app.get('/api/countries', function (req, res) {
   res.send(countries)
 })
 
-router.get('/api/people', function(req, res) {
+app.get('/api/people', function(req, res) {
   res.send(people)
 })
 
-router.post('/api/people', function(req, res) {
+app.post('/api/people', function(req, res) {
   const incoming = req.body
   console.log('people posted with:', incoming)
   res.sendStatus(200);
 })
 
-router.get('/api/people/details/:id', function (req, res) {
+app.get('/api/people/details/:id', function (req, res) {
   const person = people.find(p => String(p.id) === req.params.id)
   if (person) {
     res.send(person)
@@ -41,11 +41,15 @@ router.get('/api/people/details/:id', function (req, res) {
   }
 })
 
-router.get('/api/people/image/:id', (req, res, next) => {
+app.get('/api/people/image/:id', (req, res, next) => {
   const person = people.find(p => String(p.id) === req.params.id)
 
   if (person) {
-    var imagePath = path.join(__dirname, 'images', person.imageName);
+    const parts = __dirname.split('/')
+    parts.splice(parts.length-1, 1)
+    const newPath = parts.join('/')
+
+    var imagePath = path.join(newPath, 'images', person.imageName);
 
     res.download(imagePath, function (err) {
       if (!err) return; // file sent
@@ -60,7 +64,7 @@ router.get('/api/people/image/:id', (req, res, next) => {
   }
 })
 
-router.get('/api/image/:id', (req, res, next) => {
+app.get('/api/image/:id', (req, res, next) => {
   const image = images.find(p => String(p.id) === req.params.id)
 
   if (image) {
