@@ -1,4 +1,4 @@
-const countryData = [
+const countries = [
   { id: 1, name: "Nigeria", population:	206139589,	subRegion: "Western Africa", recordCount: 3456},
   { id: 2, name: "Ethiopia", population:	114963588,	subRegion: "Eastern Africa", recordCount: 2234},
   { id: 3, name: "Egypt", population:	102334404,	subRegion: "Northern Africa", recordCount: 198},
@@ -55,4 +55,4 @@ const countryData = [
   { id: 54, name: "Seychelles", population:	98347,	subRegion: "Eastern Africa", recordCount: 0},
 ]
 
-module.exports = countryData
+module.exports = countries
