@@ -1,6 +1,6 @@
 const express = require('express');
-const serverless = require('serverless-http')
-const bodyParser = require('body-parser')
+// const serverless = require('serverless-http')
+// const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
 const countries = require('../countries.js')
@@ -83,9 +83,9 @@ app.get('/api/image/:id', (req, res, next) => {
   }
 })
 
-app.use(bodyParser.json());
-app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+// app.use(bodyParser.json());
+// app.use('/.netlify/functions/server', router);  // path must route to lambda
+// app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app
-module.exports.handler = serverless(app)
+// module.exports.handler = serverless(app)
